@@ -1,0 +1,40 @@
+# Python discord Bot named of nevil | Aims to provide moderation services. | Version 1.00
+
+import time
+import discord
+import better_profanity
+
+def main():
+    class Nevil(discord.Client, discord.Guild):
+        async def on_member_join(self, member):
+            channels = []
+            member_join = f"Welcome to the server {member.mention}"
+            welcome_channel = self.get_channel(1247449934257721367)
+            await welcome_channel.send(content=member_join, mention_author=True)
+            await member.add_roles(discord.Object(1247824978552950804), atomic=True)
+
+        async def on_ready(self):
+            print("BOT: {} is Online.".format(self.user))
+            await self.create_text_channel(name="test")
+
+        async def on_message(self, message):
+            if message.author == self.user:
+                pass
+            else:
+                user_logs = ("{}: {}: {}".format(time.strftime("%H:%M:%S"), message.author, message.content))
+                print(user_logs)
+                with open("logs.txt", "a") as log:
+                    log.write("{}\n".format(user_logs))
+
+            profanities = ["cunt", "fuck", "shit"]
+            if better_profanity.profanity.contains_profanity(message.content) is True:
+                await message.delete()
+                await message.author.send("You cannot say this word here. ")
+
+    permissions = discord.Intents.all()
+    main_call = Nevil(intents=permissions)
+    main_call.run("enter token here")
+
+
+if __name__ == "__main__":
+    main()
