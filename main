@@ -26,7 +26,6 @@ def main():
                 with open("logs.txt", "a") as log:
                     log.write("{}\n".format(user_logs))
 
-            profanities = ["cunt", "fuck", "shit"]
             if better_profanity.profanity.contains_profanity(message.content) is True:
                 await message.delete()
                 await message.author.send("You cannot say this word here. ")
