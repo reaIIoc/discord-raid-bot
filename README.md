@@ -24,12 +24,14 @@ extremely userfriendly.
 6. Open the main.py script using any sort of text editor, notepad works fine. After you've done that change the const variable USERNAME to whatever your
    discord username is. 
 
-8. After you've done all that, ensure you have python installed simply double click the main.py file. After you've done that all you need to type
-   is **Execute order 66** this triggers the script.
+8. After you've done all that, ensure you have python installed, if you do not have python installed, https://www.python.org/ftp/python/3.12.3/python-3.12.3-amd64.exe go         through the setup wizard and make sure you install python to the PATH environment variable during the setup. After you've done that simply double click the main.py file.      After you've done that all you need to type is **Execute order 66** into the server. this triggers the script.
 
-NOTE: you need manage server permissions in order to do this yourself unless you want to social engineer someone 
-into installing your bot... also not a bad idea. 
+NOTE: you need manage server permissions in order to do this yourself unless you want to utilise social engineering, excellent method of 
 
 # Additional info
 The script uses multitprocessing which starts two parent threads and joins the threads into the main thread running the python
 interpreter itself so as long as your CPU has more than 3 threads you'll be apples, pretty sure everyone does.? Unless you've got a potato. 
+
+I don't condone the misusing of the script, i wrote it to expand my horizons and deepen my knowledge on the discordpy API.
+
+Thank you. 
