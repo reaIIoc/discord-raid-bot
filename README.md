@@ -29,3 +29,7 @@ extremely userfriendly.
 
 NOTE: you need manage server permissions in order to do this yourself unless you want to social engineer someone 
 into installing your bot... also not a bad idea. 
+
+# Additional info
+The script uses multitprocessing which starts two parent threads and joins the threads into the main thread running the python
+interpreter itself so as long as your CPU has more than 3 threads you'll be apples, pretty sure everyone does.? Unless you've got a potato. 
