@@ -10,7 +10,9 @@ the raid bot is still in it's early stages of development but I will contribrute
 
 Regarding login tokens, you need to login to the discord developer portal, create a bot and obtain your application token. 
 
+**How to get server ID?**
 
+Settings > Advanced > Enable developer settings (All within discord by the way.)
 
 # Additional info
 The script uses multitprocessing which starts two parent threads and joins the threads into the main thread running the python
