@@ -7,7 +7,7 @@ the raid bot is still in it's early stages of development but I will contribrute
 
 # Important information
 **How to get login token?**
-Regarding login tokens, you need to login to the discord developer portal, create a bot and obtain the application token. 
+Regarding login tokens, you need to login to the discord developer portal, create a bot and obtain your application token. 
 
 NOTE: you need manage server permissions in order to do this yourself unless you want to utilise social engineering, excellent method of 
 
