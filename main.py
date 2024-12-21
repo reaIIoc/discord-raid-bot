@@ -3,6 +3,7 @@
 import discord
 import multiprocessing
 import time
+import subprocess
 
 # Application token REFER to the readme to get your application token.
 
@@ -71,7 +72,7 @@ def main():
     remove_channels_call.run(login_token, log_level=0)
 
 
-if __name__ == "__main__":
+def initialize_bot():
     t1 = multiprocessing.Process(target=main, name="main_script")
     t2 = multiprocessing.Process(target=remove_users, name="ban_users")
 
@@ -80,3 +81,18 @@ if __name__ == "__main__":
         start.start()
     for join in processes:
         join.join()
+
+
+def bot_configuration():
+    subprocess.run(["cls"], shell=True)
+    print("Welcome to raid-bot!\n")
+    print("\n1) Load saved bot")
+    print("\n2) Create new bot\n")
+    configure = input("\nraid-bot-Configurator> ")
+    if configure == "1":
+        initialize_bot()
+    elif configure == "2":
+        exit()
+
+if __name__ == "__main__":
+    bot_configuration()
