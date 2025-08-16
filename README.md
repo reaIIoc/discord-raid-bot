@@ -24,6 +24,6 @@ Settings > Advanced > Enable developer settings (All within discord by the way.)
 The script uses multitprocessing which starts two parent threads and joins the threads into the main thread running the python
 interpreter itself so as long as your CPU has more than 3 threads you'll be apples, pretty sure everyone does.? Unless you've got a potato. (fret not i'm also a broke boy)
 
-I don't condone the misusing of the program, i wrote it purely to expand my horizons and deepen my knowledge on the discordpy API. I hope that this can serve as some sort of reference to those looking to create what seems to be an automation of raiding a discord server, or just purely to understand how simple it is to write a raid bot in a simple language like Python. 
+I don't condone the misusing of the program, i wrote it purely to expand my horizons and deepen my knowledge on the discordpy API. I hope that this can serve as some sort of reference to those looking to understand how simple it is to write a raid bot in a simple language like Python. 
 
 Thank you. 
